@@ -1,7 +1,7 @@
 class ThemeInterface {
   defaultId = undefined;
   defaultPosition = undefined;
-  html = undefined;
+  html = undefined; // should be one element
   style = undefined;
 }
 
@@ -102,8 +102,9 @@ class ToggleFancyShapeTheme extends ThemeInterface {
     <label for="darkmode-toggle">Dark Mode</label>
   </div>`;
   style = `
-  @charset "UTF-8";
-  *, *:before, *:after {
+  #${this.defaultId} *,
+  #${this.defaultId} *:before, 
+  #${this.defaultId} *:after {
     box-sizing: border-box;
   }
   
@@ -112,23 +113,23 @@ class ToggleFancyShapeTheme extends ThemeInterface {
     background-color: var(--color-bg);
     color: var(--color-text);
   }
-  
-  :root {
+
+  #${this.defaultId} {
     --color-bg: #fff;
     --color-text: #333;
   }
-  :root .darkmode {
+  #${this.defaultId} .darkmode {
     --color-bg: #222;
     --color-text: steelblue;
   }
   
-  #darkmode-toggle {
+  #${this.defaultId} #darkmode-toggle {
     position: absolute;
     width: 0;
     height: 0;
     visibility: hidden;
   }
-  #darkmode-toggle + label {
+  #${this.defaultId} #darkmode-toggle + label {
     position: relative;
     display: block;
     width: 4rem;
@@ -137,7 +138,7 @@ class ToggleFancyShapeTheme extends ThemeInterface {
     border-radius: 2rem;
     text-indent: -100em;
   }
-  #darkmode-toggle + label:after {
+  #${this.defaultId} #darkmode-toggle + label:after {
     content: "";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
@@ -159,36 +160,22 @@ class ToggleFancyShapeTheme extends ThemeInterface {
     border-radius: 1.5rem;
     transition: left 0.2s ease-out, transform 0.2s ease-out, width 0.2s ease-out;
   }
-  #darkmode-toggle + label:hover:after, #darkmode-toggle + label:active:after {
+  #${this.defaultId} #darkmode-toggle + label:hover:after,
+  #${this.defaultId} #darkmode-toggle + label:active:after {
     width: 2rem;
   }
-  #darkmode-toggle:checked + label:after {
+  #${this.defaultId} #darkmode-toggle:checked + label:after {
     content: "";
     left: calc(100% - 0.25rem);
     transform: translateX(-100%);
     text-align: right;
   }
-  
-  /*body:before{
-    visibility:hidden;
-    position:absolute;
-    z-index:-1;
-    @media (prefers-color-scheme: dark) {
-      content:'dark';
-    }
-    @media (prefers-color-scheme: light) {
-      content:'light';
-    }
-  }*/
+
   @media (prefers-color-scheme: dark) {
-    body {
-      --pref:"dark";
-    }
+    body { --pref:"dark"; }
   }
   @media (prefers-color-scheme: light) {
-    body {
-      --pref:"light";
-    }
+    body { --pref:"light"; }
   }
   `;
 }
