@@ -17,6 +17,10 @@ This is how you add dark mode feature in your project
 
 ```html
 <script
+  src="https://raw.githubusercontent.com/mohamed17717/dynamic-dark-mode/master/button-themes.js"
+  defer
+></script>
+<script
   src="https://raw.githubusercontent.com/mohamed17717/dynamic-dark-mode/master/script.js"
   defer
 ></script>
