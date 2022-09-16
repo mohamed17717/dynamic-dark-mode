@@ -98,6 +98,10 @@ class ToggleFancyShapeTheme extends ThemeInterface {
   `;
 
   html = `<div>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
     <input id="darkmode-toggle" type="checkbox">
     <label for="darkmode-toggle">Dark Mode</label>
   </div>`;
