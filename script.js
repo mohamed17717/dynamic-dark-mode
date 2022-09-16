@@ -9,29 +9,6 @@
   html elm must contain checkbox to attach event to it
 */
 
-// Themes start
-class ThemeInterface {
-  defaultId = undefined;
-  defaultPosition = undefined;
-  html = undefined;
-  style = undefined;
-}
-
-class ToggleFancyShapeTheme extends ThemeInterface {
-  defaultId = "adm-toggle";
-  defaultPosition = `position:fixed;bottom:8%;right:0;z-index: 999999999999999999999999999999;`;
-
-  html = `<div>
-    <input id="darkmode-toggle" type="checkbox">
-    <label for="darkmode-toggle">Dark Mode</label>
-  </div>`;
-  style = `
-  @charset "UTF-8";
-  *,:after,:before{box-sizing:border-box}body{transition:background-color .5s ease-out,color .5s ease-out;background-color:var(--color-bg);color:var(--color-text)}:root{--color-bg:#fff;--color-text:#333}:root .darkmode{--color-bg:#222;--color-text:steelblue}#darkmode-toggle{position:absolute;width:0;height:0;visibility:hidden}#darkmode-toggle+label{position:relative;display:block;width:4rem;height:2rem;background-color:var(--color-text);border-radius:2rem;text-indent:-100em}#darkmode-toggle+label:after{content:"";font-family:"Font Awesome 5 Free";font-weight:900;display:inline-block;font-size:1em;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;color:var(--color-text);text-indent:0;padding:.25rem;text-align:left;position:absolute;top:.25rem;left:.25rem;width:1.5rem;height:1.5rem;background-color:var(--color-bg);border-radius:1.5rem;transition:left .2s ease-out,transform .2s ease-out,width .2s ease-out}#darkmode-toggle+label:active:after,#darkmode-toggle+label:hover:after{width:2rem}#darkmode-toggle:checked+label:after{content:"";left:calc(100% - .25rem);transform:translateX(-100%);text-align:right}@media (prefers-color-scheme:dark){body{--pref:"dark"}}@media (prefers-color-scheme:light){body{--pref:"light"}}
-  `;
-}
-// Themes end
-
 class ToggleButtonShape {
   toggleElm = undefined;
 
