@@ -41,8 +41,15 @@
       }
     </style>
 
-    <script src="./button-themes.js" defer></script>
-    <script src="./script.js" defer></script>
+    <!-- <script src="./button-themes.js" defer></script>
+    <script src="./script.js" defer></script> -->
+    <script src="https://unpkg.com/auto-dark-mode@latest"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', e=> {
+
+        new DynamicDarkMode().run();
+      })
+    </script>
   </head>
   <body>
     <div id="root">
