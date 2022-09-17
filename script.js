@@ -88,14 +88,19 @@ class ToggleHistoryManager {
 }
 
 class ToggleAction {
-  history = new ToggleHistoryManager();
+  constructor (doubleRotatedElements) {
+    this.history = new ToggleHistoryManager();
 
-  rotatedElementsSelectors = ["html", "img", "video"];
-
-  isHue = true;
-  cssRotateCode = `filter: invert(1)${
-    this.isHue ? " hue-rotate(180deg)" : ""
-  } !important`;
+    this.rotatedElementsSelectors = [...new Set([
+      "html", "img", "video",
+      ...doubleRotatedElements,
+    ])];
+  
+    this.isHue = true;
+    this.cssRotateCode = `filter: invert(1)${
+      this.isHue ? " hue-rotate(180deg)" : ""
+    } !important`;
+  }
 
   rotateElmColor180deg(elm) {
     const cssCode = this.cssRotateCode;
@@ -126,14 +131,13 @@ class ToggleAction {
   };
 }
 
-class DynamicDarkMode {
-  // update theme class here
-  constructor (themeInstance) {
+class AutoDarkMode {
+  constructor (themeInstance, doubleRotatedElements) {
     const buttonTheme = themeInstance || new ToggleFancyShapeTheme();
 
     const button = new ToggleButtonShape(buttonTheme);
     const history = new ToggleHistoryManager();
-    const action = new ToggleAction();
+    const action = new ToggleAction(doubleRotatedElements || []);
 
     const { onChangeEvent } = action;
     const { dispatchChangeEvent } = button;
@@ -146,4 +150,5 @@ class DynamicDarkMode {
 }
 
 const theme = new ToggleFancyShapeTheme();
-new DynamicDarkMode(theme);
+const doubleRotatedElements = ['img', 'video'];
+new AutoDarkMode(null, doubleRotatedElements);
