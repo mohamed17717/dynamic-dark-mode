@@ -128,21 +128,22 @@ class ToggleAction {
 
 class DynamicDarkMode {
   // update theme class here
-  buttonTheme = new ToggleFancyShapeTheme();
-  button = new ToggleButtonShape(this.buttonTheme);
+  constructor (themeInstance) {
+    const buttonTheme = themeInstance || new ToggleFancyShapeTheme();
 
-  history = new ToggleHistoryManager();
-  action = new ToggleAction();
+    const button = new ToggleButtonShape(buttonTheme);
+    const history = new ToggleHistoryManager();
+    const action = new ToggleAction();
 
-  run() {
-    const { onChangeEvent } = this.action;
-    const { dispatchChangeEvent } = this.button;
+    const { onChangeEvent } = action;
+    const { dispatchChangeEvent } = button;
 
-    this.button.render();
-    this.button.setChangeEvent(onChangeEvent);
+    button.render();
+    button.setChangeEvent(onChangeEvent);
 
-    this.history.setPreviousState(dispatchChangeEvent);
+    history.setPreviousState(dispatchChangeEvent);
   }
 }
 
-new DynamicDarkMode().run();
+const theme = new ToggleFancyShapeTheme();
+new DynamicDarkMode(theme);
